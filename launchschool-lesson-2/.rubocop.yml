@@ -15,3 +15,7 @@ Style/GuardClause:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide
   Enabled: false
   MinBodyLength: 1
+
+Style/MutableConstant:
+  Enabled: false
+  Description: Freeze mutable constants.

@@ -1,18 +1,16 @@
-VALID_CHOICES = ['rock', 'paper', 'scissor']
+VALID_CHOICES = %w(rock paper scissor)
 
 def prompt(message)
   Kernel.puts "=> #{message}"
 end
 
-def display_results(player, computer)
-  if (player == 'rock' && computer == 'scissor') ||
-    (player == 'paper' && computer == 'rock') ||
-    (player == 'scissor' && computer == 'paper')
+def results(player, computer)
+  if (player == 'rock' && computer == 'scissor') || (player == 'paper' &&
+     computer == 'rock') || (player == 'scissor' && computer == 'paper')
     prompt("You won!!")
-  elsif (player == 'rock' && computer == 'paper') ||
-       (player == 'paper' && computer == 'scissor') ||
-       (player == 'scissor' && computer == 'rock')
-       prompt("You loss, computer won.")
+  elsif (player == 'rock' && computer == 'paper') || (player == 'paper' &&
+     computer == 'scissor') || (player == 'scissor' && computer == 'rock')
+    prompt("You loss, computer won.")
   else
     prompt("It's a tie!!")
   end
@@ -35,7 +33,7 @@ loop do
 
   prompt("You chose: #{choice}, computer chose: #{computer_choice}")
 
-  display_results(choice, computer_choice)
+  results(choice, computer_choice)
 
   prompt("Do you want to play again?(Y to play again)")
   answer = Kernel.gets().chomp()
