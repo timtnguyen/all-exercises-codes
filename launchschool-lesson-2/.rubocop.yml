@@ -1,0 +1,17 @@
+Style/StringLiterals:
+  Enabled: false
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+Style/MethodCallParentheses:
+  Enabled: false
+  Description: Do not use parentheses for method calls with no arguments.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide
+
+Style/GuardClause:
+  Description: Check for conditionals that can be replaced with guard clauses.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide
+  Enabled: false
+  MinBodyLength: 1
