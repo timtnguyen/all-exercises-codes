@@ -33,9 +33,6 @@ end
 end
 prompt("Hi, #{name}!")
 
-loop do
-  choice = ''
-  loop do
 short_listed = <<-LIST
     Choose one of the letter for your choice
 
@@ -47,6 +44,10 @@ short_listed = <<-LIST
     LIST
 
     prompt(short_listed)
+
+loop do
+  choice = ''
+  loop do
 
     if VALID_CHOICES.include?(choice)
       break
