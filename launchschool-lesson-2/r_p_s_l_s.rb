@@ -21,12 +21,32 @@ def results(player, computer)
     prompt("It's a tie!")
   end
 end
+prompt("Enter your name to play")
+name = ''
+loop do
+name = Kernel.gets().chomp()
+if name.empty?()
+  prompt("Enter your name")
+else
+  break
+end
+end
+prompt("Hi, #{name}!")
 
 loop do
   choice = ''
   loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-    choice = Kernel.gets().chomp()
+short_listed = <<-LIST
+    Choose one of the letter for your choice
+
+        r = rock
+        p = paper
+        s = scissor
+        l = lizard
+        s = spock
+    LIST
+
+    prompt(short_listed)
 
     if VALID_CHOICES.include?(choice)
       break
