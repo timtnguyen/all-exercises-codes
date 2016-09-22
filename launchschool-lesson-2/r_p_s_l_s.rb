@@ -1,4 +1,4 @@
-VALID_CHOICES = %w(rock paper scissor lizard spock)
+VALID_CHOICES = %w(r p s l ss)
 
 def prompt(message)
   Kernel.puts "=> #{message}"
@@ -36,15 +36,16 @@ def results(player, computer)
     prompt("It's a tie!")
   end
 end
+
 prompt("Enter your name to play")
 name = ''
 loop do
-name = Kernel.gets().chomp()
-if name.empty?()
-  prompt("Enter your name")
-else
-  break
-end
+  name = Kernel.gets().chomp()
+  if name.empty?()
+    prompt("Enter your name")
+  else
+    break
+  end
 end
 prompt("Hi, #{name}!")
 
@@ -54,7 +55,7 @@ short_listed = <<-MSG
         p = paper
         s = scissor
         l = lizard
-        s = spock
+        ss = spock
     MSG
 
 prompt(short_listed)
@@ -74,13 +75,13 @@ loop do
 
   computer_choice = VALID_CHOICES.sample
 
-  prompt("You chose: #{choice}, computer chose: #{computer_choice}")
+  prompt("You chose: #{operation(choice)},
+  computer chose: #{operation(computer_choice)}")
   results(choice, computer_choice)
 
   prompt("Do you want to play again?(Y to play again)")
   answer = Kernel.gets().chomp()
   break unless answer.downcase.start_with?('y')
-
 end
 
 prompt("Thank you for playing the game. See you later")
