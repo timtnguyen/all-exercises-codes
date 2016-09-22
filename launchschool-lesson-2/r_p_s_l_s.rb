@@ -5,11 +5,26 @@ def prompt(message)
 end
 
 def win?(first, second)
-  (first == 'scissor' && (second == 'lizard' || second == 'paper')) ||
-    (first == 'rock' && (second == 'lizard' || second == 'scissor')) ||
-    (first == 'paper' && (second == 'rock' || second == 'spock')) ||
-    (first == 'lizard' && (second == 'paper' || second == 'spock')) ||
-    (first == 'spock' && (second == 'rock' || second == 'scissor'))
+  (first == 's' && (second == 'l' || second == 'p')) ||
+    (first == 'r' && (second == 'l' || second == 's')) ||
+    (first == 'p' && (second == 'r' || second == 'ss')) ||
+    (first == 'l' && (second == 'p' || second == 'ss')) ||
+    (first == 'ss' && (second == 'r' || second == 's'))
+end
+
+def operation(op)
+  case op
+  when 'r'
+    'rock'
+  when 'p'
+    'paper'
+  when 's'
+    'scissor'
+  when 'l'
+    'lizard'
+  when 'ss'
+    'spock'
+  end
 end
 
 def results(player, computer)
@@ -33,21 +48,22 @@ end
 end
 prompt("Hi, #{name}!")
 
-short_listed = <<-LIST
+short_listed = <<-MSG
     Choose one of the letter for your choice
-
         r = rock
         p = paper
         s = scissor
         l = lizard
         s = spock
-    LIST
+    MSG
 
-    prompt(short_listed)
+prompt(short_listed)
 
 loop do
   choice = ''
   loop do
+    prompt("What is your choice?")
+    choice = Kernel.gets().chomp()
 
     if VALID_CHOICES.include?(choice)
       break
@@ -64,6 +80,7 @@ loop do
   prompt("Do you want to play again?(Y to play again)")
   answer = Kernel.gets().chomp()
   break unless answer.downcase.start_with?('y')
+
 end
 
 prompt("Thank you for playing the game. See you later")
