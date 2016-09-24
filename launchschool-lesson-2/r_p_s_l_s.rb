@@ -3,6 +3,7 @@
 VALID_CHOICES = %w(rock paper scissor lizard spock).freeze
 
 wins = losses = draws = 0
+
 def prompt(message)
   Kernel.puts "=> #{message}"
 end
@@ -15,9 +16,9 @@ def win?(first, second)
     (first == 'spock' && (second == 'rock' || second == 'scissor'))
 end
 
+  prompt("Welcome to our game. Plese enter your name")
 name = ''
 loop do
-  prompt("Welcome to our game. Plese enter your name")
   name = Kernel.gets().chomp()
   if name.empty?()
     prompt("Must enter your name")
@@ -26,7 +27,7 @@ loop do
   end
 end
 
-prompt("Hi, #{name}!")
+prompt("Hi, #{name}!\n\n---------------\n\n")
 
 choice_abbre = <<-MSG
   You must choose one of the following choices(example: enter 'r' if your
@@ -68,7 +69,7 @@ loop do
   computer_choice = VALID_CHOICES.sample
 
   prompt("You choose: #{operation(choice)},
-   computer choose: #{computer_choice}")
+   computer choose: #{computer_choice}\n\n---------------\n\n")
 
   prompt win?(operation(choice), computer_choice)
   if win?(operation(choice), computer_choice)
