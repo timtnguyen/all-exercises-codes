@@ -7,12 +7,29 @@ WINNING_COMBO = {
   'lizard' => %w(paper spock),
   'spock' => %w(rock scissor)
 }
-
+wins = losses = draws = 0
 def prompt(message)
   Kernel.puts "=> #{message}"
 end
+def win?(first, second)
+  (first == 'rock' && second == 'scissor' || second == 'lizard') ||
+  (first == 'paper' && second == 'rock' || second == 'spock') ||
+  (first == 'scissor' && second == 'paper' || second == 'lizard') ||
+  (first == 'lizard' && second == 'paper' || second == 'spock') ||
+  (first == 'spock' && second == 'rock' || second == 'scissor')
+end
 
-wins = losses = draws = 0
+
+
+def results(player, computer)
+  if win?(player, computer)
+    prompt("you win")
+  elsif win?(computer, player)
+    prompt("computer win")
+  else
+    prompt("It's a tie!")
+  end
+end
 
 name = ''
 loop do
@@ -53,48 +70,23 @@ def operation(op)
   end
 end
 
-  def win?(first, second)
-    WINNING_COMBO[first].include?(second)
-  end
-
-  def results(player, computer)
-    if win?(player, computer)
-      wins += 1
-      prompt("you win")
-    elsif win?(computer, player)
-      losses + 1
-      prompt("computer win")
-    else
-      draws += 1
-      prompt("It's a tie")
-    end
-  end
+loop do
+  choice = ''
   loop do
-    human_choice = ''
-    loop do
-      human_choice = Kernel.gets().chomp()
-      if %w(r p s l ss).include?(human_choice)
-        break
-      else
-        prompt("Enter a valid choice")
-      end
+    choice = Kernel.gets().chomp()
+    if %w(r p s l ss).include?(choice)
+      break
+    else
+      prompt("Enter a valid choice")
     end
-
-    computer_choice = VALID_CHOICES.sample
-    prompt("You choose: #{operation(human_choice)}, computer choose: #{computer_choice}")
-    results(human_choice, computer_choice)
-
-  prompt("Wins: #{wins}\nLosses: #{losses}\nDraws: #{draws}")
-  if wins == 5
-    prompt("You won this round")
-  elsif losses == 5
-    prompt("You loss this round")
   end
+
+  computer_choice = VALID_CHOICES.sample
+
+  prompt("You choose: #{operation(choice)}, computer choose: #{computer_choice}")
+  results(choice, computer_choice)
 
   prompt("Do you want to play again?(Y to play again)")
   answer = Kernel.gets().chomp()
   break unless answer.downcase.start_with?('y')
-  end
-
-
-prompt("Thank you for playing the game. Hope you have a goodtimes. Goodbye!!")
+end
