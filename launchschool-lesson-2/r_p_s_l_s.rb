@@ -57,19 +57,14 @@ loop do
     choices = ''
     loop do
       prompt("What is your choice?")
-      choices_abbrev = Kernel.gets().chomp().downcase()
-      if choices_abbrev == 'r'
-        choices = 'rock'
-      elsif choices_abbrev == 'p'
-        choices = 'paper'
-      elsif choices_abbrev == 's'
-        choices = 'scissor'
-      elsif choices_abbrev == 'l'
-        choices = 'lizard'
-      elsif choices_abbrev == 'ss'
-        choices = 'spock'
+      choices = Kernel.gets().chomp().downcase()
+      case choices
+      when 'r' then choices = 'rock'
+      when 'p' then choices = 'paper'
+      when 's' then choices = 'scissor'
+      when 'l' then choices = 'lizard'
+      when 'ss'then choices = 'spock'
       end
-
       if VALID_CHOICES.include?(choices)
         break
       else
