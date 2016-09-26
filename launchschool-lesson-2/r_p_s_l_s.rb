@@ -32,9 +32,9 @@ draws = 0
 prompt("Enter your name to play")
 name = ''
 loop do
-  name = Kernel.gets(). chomp()
+  name = Kernel.gets().chomp()
 
-  if name.empty?() || name == ''
+  if name.empty?() || name == ' '
     prompt("Enter a valid name")
   else
     break
