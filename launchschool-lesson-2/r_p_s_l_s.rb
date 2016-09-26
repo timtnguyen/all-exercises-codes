@@ -1,96 +1,111 @@
+VALID_CHOICES = %w(rock paper scissor lizard spock)
 
-
-VALID_CHOICES = %w(rock paper scissor lizard spock).freeze
-
-wins = losses = draws = 0
+WINNING_COMBO = {
+  'rock' => %w(scissor lizard),
+  'paper' => %w(rock spock),
+  'scissor' => %w(lizard paper),
+  'lizard' => %w(spock paper),
+  'spock' => %w(rock scissor)
+}
 
 def prompt(message)
   Kernel.puts "=> #{message}"
 end
 
 def win?(first, second)
-  (first == 'rock' && (second == 'scissor' || second == 'lizard')) ||
-    (first == 'paper' && (second == 'rock' || second == 'spock')) ||
-    (first == 'scissor' && (second == 'paper' || second == 'lizard')) ||
-    (first == 'lizard' && (second == 'paper' || second == 'spock')) ||
-    (first == 'spock' && (second == 'rock' || second == 'scissor'))
+  WINNING_COMBO[first].include?(second)
 end
 
-  prompt("Welcome to our game. Plese enter your name")
+def results(player, computer)
+  if win?(player, computer)
+    prompt("you win")
+  elsif win?(computer, player)
+    prompt("computer win")
+  else
+    prompt("It's a tie")
+  end
+end
+wins = 0
+losses = 0
+draws = 0
+
+prompt("Enter your name to play")
 name = ''
 loop do
-  name = Kernel.gets().chomp()
-  if name.empty?()
-    prompt("Must enter your name")
+  name = Kernel.gets(). chomp()
+
+  if name.empty?() || name == ''
+    prompt("Enter a valid name")
   else
     break
   end
 end
+prompt("Hi, #{name}!")
 
-prompt("Hi, #{name}!\n\n---------------\n\n")
-
-choice_abbre = <<-MSG
-  You must choose one of the following choices(example: enter 'r' if your
-  choice is 'rock' etc). The first to win 5 games will win the round.
-     r = 'rock'
-     p = 'paper'
-     s = 'scissor'
-     l = 'lizard'
-     ss = 'spock'
-  MSG
-prompt(choice_abbre)
-
-def operation(op)
-  case op
-  when 'r'
-    'rock'
-  when 'p'
-    'paper'
-  when 's'
-    'scissor'
-  when 'l'
-    'lizard'
-  when 'ss'
-    'spock'
-  end
-end
-
+operation_abbrev = <<-MSG
+  Please enter your choice(example: 'r' for 'rock'and 'l' for 'lizard' etc.
+  First one reached 5 will win the round. Let's play)
+   r = rock
+   p = paper
+   s = scissor
+   l = lizard
+   ss = spock
+MSG
+prompt(operation_abbrev)
 loop do
-  choice = ''
   loop do
-    choice = Kernel.gets().chomp()
-    if %w(r p s l ss).include?(choice)
-      break
-    else
-      prompt("Enter a valid choice")
+    choices = ''
+    loop do
+      prompt("What is your choice?")
+      choices_abbrev = Kernel.gets().chomp().downcase()
+      if choices_abbrev == 'r'
+        choices = 'rock'
+      elsif choices_abbrev == 'p'
+        choices = 'paper'
+      elsif choices_abbrev == 's'
+        choices = 'scissor'
+      elsif choices_abbrev == 'l'
+        choices = 'lizard'
+      elsif choices_abbrev == 'ss'
+        choices = 'spock'
+      end
+
+      if VALID_CHOICES.include?(choices)
+        break
+      else
+        prompt("Enter valid choice")
+      end
     end
-  end
+    computer_choices = VALID_CHOICES.sample
 
-  computer_choice = VALID_CHOICES.sample
+    prompt("You choose: #{choices}, computer choose: #{computer_choices}")
 
-  prompt("You choose: #{operation(choice)},
-   computer choose: #{computer_choice}\n\n---------------\n\n")
+    prompt(results(choices, computer_choices))
 
-  prompt win?(operation(choice), computer_choice)
-  if win?(operation(choice), computer_choice)
-    wins += 1
-    prompt("you win")
-  elsif win?(computer_choice, operation(choice))
-    losses += 1
-    prompt("computer win")
-  else
-    draws += 1
-    prompt("It's a tie")
-  end
+    if win?(choices, computer_choices)
+      wins += 1
+    elsif win?(computer_choices, choices)
+      losses += 1
+    else
+      draws += 1
+    end
 
-  prompt"Wins: #{wins}\nLosses: #{losses}\nDraws: #{draws}"
+    prompt("Total count of wins, losses or draws")
+    prompt("Wins: #{wins}\nLosses: #{losses}\nDraws: #{draws}")
 
-  if wins == 5
-    prompt("You won the round!")
-  elsif losses == 5
-    prompt("You loss the round")
-  else
-    prompt("no winner")
+    if wins == 5
+      prompt("You won the round")
+      wins = 0
+      losses = 0
+      draws = 0
+      break
+    elsif losses == 5
+      prompt("You loss the round, computer won")
+      wins = 0
+      losses = 0
+      draws = 0
+      break
+    end
   end
 
   prompt("Do you want to play again?(Y to play again)")
@@ -98,4 +113,4 @@ loop do
   break unless answer.downcase.start_with?('y')
 end
 
-prompt("Thank you for playing. Goodbye!!")
+prompt("Thank you for playing the game. See you again. Goodbye!!")
