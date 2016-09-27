@@ -5,3 +5,5 @@ puts munsters_description
 puts munsters_description.upcase()
 
 puts munsters_description.downcase()
+
+puts munsters_description.swapcase()
