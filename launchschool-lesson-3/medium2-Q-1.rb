@@ -4,6 +4,9 @@ munsters = {
   "Grandpa" => { "age" => 403, "gender" => "male"},
   "Eddie"   => { "age" => 10,  "gender" => "male"}
 }
-munsters.each do
- ages = munsters["age"].inject(0) { |total, age| total += age[1]}
-puts ages
+total_age = 0
+munsters.each do |name, detail|
+  if detail["gender"] == "male"
+    puts total_age += detail["age"]
+  end 
+end
