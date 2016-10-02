@@ -1,2 +1,2 @@
-sentence = "Humpty Dumpty sat on a wall."
-puts sentence.split(/\W/).reverse().join(' ') + '.'
+sentences = "Humpty Dumpty sat on a wall."
+puts sentences.split(/\W/).reverse().join(' ') + '.'
