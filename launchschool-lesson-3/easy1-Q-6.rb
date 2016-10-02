@@ -1,4 +1,4 @@
-famous_words = "seven years ago..."
+famous_words = "seven years ago.."
 
 # way #1
 quotes = "Four score and " + famous_words
