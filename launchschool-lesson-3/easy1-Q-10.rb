@@ -1,7 +1,7 @@
-flintstones = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "BamBam"]
+flintstone = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "BamBam"]
 
 flintstones_hash = {}
-flintstones.each_with_index do |name, index|
+flintstone.each_with_index do |name, index|
    flintstones_hash[name] = index
-   puts flintstones_hash 
+   puts flintstones_hash
 end
