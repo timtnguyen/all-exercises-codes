@@ -6,5 +6,5 @@ ages = {
 }
 
 ages["Marilyn"] = 22
-ages["Spot"] = 237
+ages["Spots"] = 237
 p ages
