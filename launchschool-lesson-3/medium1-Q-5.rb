@@ -1,4 +1,4 @@
-def factors(number)
+def factor(number)
   dividend = number
   divisors = []
 while dividend > 0 do
@@ -7,8 +7,8 @@ while dividend > 0 do
 end
 divisors
 end
-p factors(10)
+p factor(10)
 
 # 1, Make sure the number with no remainder
 
-# 2, return the value divisors 
+# 2, return the value divisors
