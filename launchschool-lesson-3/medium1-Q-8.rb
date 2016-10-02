@@ -1,3 +1,3 @@
-quotes = "ruby language"
+quote = "ruby language"
 
-puts quotes.split.map(&:capitalize).join(' ')
+puts quote.split.map(&:capitalize).join(' ')
