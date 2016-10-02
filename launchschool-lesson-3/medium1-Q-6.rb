@@ -12,6 +12,6 @@ def rolling_buffer2(input_array, max_buffer_size, new_element)
   buffer
 end
 
-# In the first method, the imput argument called buffer will be modified
-# and will end up being changed after method return. The second one will
-# not alter the caller's input argument
+# =>In the first method, the imput argument called buffer will be modified
+# =>and will end up being changed after method return. The second one will
+# =>not alter the caller's input argument
