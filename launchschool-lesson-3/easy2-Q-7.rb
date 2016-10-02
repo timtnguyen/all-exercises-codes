@@ -1,3 +1,3 @@
-advice = "Few things in life are as important as house training your pet dinosaur."
+advices = "Few things in life are as important as house training your pet dinosaur."
 
-puts advice.include?("Dino")
+puts advices.include?("Dino")
