@@ -1,3 +1,3 @@
-title = "Flintstone Family Members"
+title = "Flintstones Family Members"
 
 puts title.center(40)
