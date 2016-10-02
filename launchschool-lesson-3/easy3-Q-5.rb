@@ -1,3 +1,3 @@
-statement = "The flintstones Rock!"
+statements = "The flintstones Rock!"
 
-puts statement.count("t")
+puts statements.count("t")
