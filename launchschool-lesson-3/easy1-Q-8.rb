@@ -1,6 +1,6 @@
-flintstones = ["Fred", "Wilma"]
-flintstones << ["Barney", "betty"]
-flintstones << ["BamBam", "Pebbles"]
+flintstone = ["Fred", "Wilma"]
+flintstone << ["Barney", "betty"]
+flintstone << ["BamBam", "Pebbles"]
 
-flintstones.flatten!
-p flintstones
+flintstone.flatten!
+p flintstone
