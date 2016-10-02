@@ -1,9 +1,9 @@
-munsters_description = "The Munsters are creepy in a good way."
+munsters_descriptions = "The Munsters are creepy in a good way."
 
-puts munsters_description
+puts munsters_descriptions
 
-puts munsters_description.upcase()
+puts munsters_descriptions.upcase()
 
-puts munsters_description.downcase()
+puts munsters_descriptions.downcase()
 
-puts munsters_description.swapcase()
+puts munsters_descriptions.swapcase()
