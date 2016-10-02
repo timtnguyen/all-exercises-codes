@@ -14,7 +14,7 @@ munsters["Marilyn"]["age_group"] = "adult"
 
 puts munsters
 
-or
+# => or:
 
 munsters.each do |name, detail|
   case detail["age"]
