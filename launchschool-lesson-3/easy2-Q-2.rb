@@ -4,6 +4,6 @@ ages = {
   "Grandpa"  => 5843,
   "Eddie"    => 10,
   "Marilyn"  => 22,
-  "Spot"     => 237
+  "Spots"     => 237
 }
  puts ages.inject(0) { |total, age| total += age[1]}
