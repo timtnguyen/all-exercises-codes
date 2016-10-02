@@ -1,3 +1,3 @@
-quotes = "The Flintstones rock!"
+quote = "The Flintstones rock!"
 
-10.times { |n| puts (" " * n) + quotes}
+10.times { |n| puts (" " * n) + quote}
