@@ -4,4 +4,4 @@ ages = {
   "Grandpa" => 402,
   "Eddie"   => 10
 }
-p ages.select { |name, age|  age < 100 }
+puts ages.select { |name, age|  age < 100 }
