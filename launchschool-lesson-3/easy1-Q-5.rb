@@ -1,4 +1,4 @@
-# There are several ways to do that:
+# There are several ways to do:
 
 (10..100).member?(42)
 
