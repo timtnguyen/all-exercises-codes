@@ -4,6 +4,6 @@ flintstones = {
   "Barney"  => 2,
   "Betty"   => 3,
   "BamBam"  => 4,
-  "Pebbles" => 5
+  "Pebble" => 5
 }
 p flintstones.assoc("Barney")
