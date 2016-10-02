@@ -8,4 +8,4 @@ end
 
 p bar(foo)
 
-# => "no"
+# ==> "no"
