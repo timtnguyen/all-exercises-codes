@@ -15,4 +15,4 @@ end
 
 puts mess_with_demographics(munsters)
 
-# Yes, It changed the program. The original program is lost.
+# =>Yes, It changed the program. The original program is lost.
