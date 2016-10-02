@@ -9,6 +9,6 @@ def rps(fist1, fist2)
 end
 
 puts rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock")
-# => paper 
+# ==> paper
 #puts rps(rps("rock", "paper"), rps("rock", "scissors"))
-# => paper
+# ==> paper
