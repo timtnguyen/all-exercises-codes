@@ -1,6 +1,6 @@
 numbers = [1, 2,  3, 4]
 numbers.uniq
-puts numbers 
+puts numbers
 
 # It will print out [1, 2, 2, 3]
 # so 'uniq' won't alter an array.
