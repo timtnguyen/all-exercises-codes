@@ -15,33 +15,33 @@ def prompt(message)
   puts " => #{message}"
 end
 
-# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
 def display_board(brd)
-system 'clear'
-puts "You are: #{PLAYER_MARKER}, Computer is: #{COMPUTER_MARKER}"
-puts ""
-puts "     |     |     |     |" + "          (1 | 2 | 3 | 4 | 5)"
-puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}  | #{brd[4]}   |  #{brd[5]}"
-puts "     |     |     |     |"
-puts "-----+-----+-----+-----+-----"
-puts "     |     |     |     |" + "          (6 | 7 | 8 | 9 | 10)"
-puts "  #{brd[6]}  |  #{brd[7]}  |  #{brd[8]}  |  #{brd[9]}  |  #{brd[10]}"
-puts "     |     |     |     |"
-puts "-----+-----+-----+-----+-----"
-puts "     |     |     |     |" + "          (11 | 12 | 13 | 14 | 15)"
-puts "  #{brd[11]}  |  #{brd[12]}  |  #{brd[13]}  |  #{brd[14]}  |  #{brd[15]}"
-puts "     |     |     |     |"
-puts "-----+-----+-----+-----+-----"
-puts "     |     |     |     |" + "          (16 | 17 | 18 | 19 | 20)"
-puts "  #{brd[16]}  |  #{brd[17]}  |  #{brd[18]}  |  #{brd[19]}  |  #{brd[20]}"
-puts "     |     |     |     |"
-puts "-----+-----+-----+-----+-----"
-puts "     |     |     |     |" + "          (21 | 22 | 23 | 24 | 25)"
-puts "  #{brd[21]}  |  #{brd[22]}  |  #{brd[23]}  |  #{brd[24]}  |  #{brd[25]}"
-puts "     |     |     |     |"
-puts ""
+  system 'clear'
+  puts "You are: #{PLAYER_MARKER}, Computer is: #{COMPUTER_MARKER}"
+  puts ""
+  puts "     |     |     |     |" + "          (1 | 2 | 3 | 4 | 5)"
+  puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}  | #{brd[4]}   |  #{brd[5]}"
+  puts "     |     |     |     |"
+  puts "-----+-----+-----+-----+-----"
+  puts "     |     |     |     |" + "          (6 | 7 | 8 | 9 | 10)"
+  puts "  #{brd[6]}  |  #{brd[7]}  |  #{brd[8]}  |  #{brd[9]}  |  #{brd[10]}"
+  puts "     |     |     |     |"
+  puts "-----+-----+-----+-----+-----"
+  puts "     |     |     |     |" + "          (11 | 12 | 13 | 14 | 15)"
+  puts "  #{brd[11]}  |  #{brd[12]}  |  #{brd[13]}  |  #{brd[14]}  | #{brd[15]}"
+  puts "     |     |     |     |"
+  puts "-----+-----+-----+-----+-----"
+  puts "     |     |     |     |" + "          (16 | 17 | 18 | 19 | 20)"
+  puts "  #{brd[16]}  |  #{brd[17]}  |  #{brd[18]}  |  #{brd[19]}  | #{brd[20]}"
+  puts "     |     |     |     |"
+  puts "-----+-----+-----+-----+-----"
+  puts "     |     |     |     |" + "          (21 | 22 | 23 | 24 | 25)"
+  puts "  #{brd[21]}  |  #{brd[22]}  |  #{brd[23]}  |  #{brd[24]}  | #{brd[25]}"
+  puts "     |     |     |     |"
+  puts ""
 end
-# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
 def initialize_board
   new_board = {}
@@ -55,6 +55,7 @@ end
 
 def pick_turn
   loop do
+    prompt "First to wins 5 will win the round"
     prompt "Choose turn: enter 'p' to go first or 'c' for computer go first"
     answer = gets.chomp.downcase
     if answer.start_with?('p')
