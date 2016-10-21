@@ -55,7 +55,6 @@ end
 
 def pick_turn
   loop do
-    prompt "First to wins 5 will win the round"
     prompt "Choose turn: enter 'p' to go first or 'c' for computer go first"
     answer = gets.chomp.downcase
     if answer.start_with?('p')
@@ -160,7 +159,7 @@ def alternate_player(current_player)
     "player"
   end
 end
-
+prompt "First to wins 5 will win the round"
 loop do
   board = initialize_board
   current_player = pick_turn
