@@ -7,9 +7,11 @@ WINNING_COMBO = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15],
                  [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]] +   # rows
                 [[1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23],
                  [4, 9, 14, 19, 24], [5, 10, 15, 20, 25]] +      # columns
-                [[1,  7, 13, 19, 25], [5, 9, 13, 17, 21]].freeze # diagnals
+                [[1, 7, 13, 19, 25], [5, 9, 13, 17, 21]].freeze # diagnals
 
-wins = losses = draws = 0
+wins = 0
+losses = 0
+draws = 0
 
 def prompt(message)
   puts " => #{message}"
@@ -21,7 +23,7 @@ def display_board(brd)
   puts "You are: #{PLAYER_MARKER}, Computer is: #{COMPUTER_MARKER}"
   puts ""
   puts "     |     |     |     |" + "          (1 | 2 | 3 | 4 | 5)"
-  puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}  | #{brd[4]}   |  #{brd[5]}"
+  puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}  |  #{brd[4]}  |  #{brd[5]}"
   puts "     |     |     |     |"
   puts "-----+-----+-----+-----+-----"
   puts "     |     |     |     |" + "          (6 | 7 | 8 | 9 | 10)"
@@ -55,11 +57,11 @@ end
 
 def pick_turn
   loop do
-    prompt "Choose turn: enter 'p' to go first or 'c' for computer go first"
+    prompt "Enter 'player' to go first or 'computer' for computer go first"
     answer = gets.chomp.downcase
-    if answer.start_with?('p')
+    if answer.include?('player')
       return "player"
-    elsif answer.start_with?('c')
+    elsif answer.include?('computer')
       return "computer"
     else
       prompt "Enter a valid choice"
@@ -75,7 +77,7 @@ end
 def player_places_piece!(brd)
   square = ''
   loop do
-    prompt "Choose one:" + joinor(empty_squares(brd)) + ":"
+    prompt "Choose one " + joinor(empty_squares(brd)) + ":"
     square = gets.chomp.to_i
     if empty_squares(brd).include?(square)
       break
@@ -153,55 +155,56 @@ def make_moves(brd, current_player)
 end
 
 def alternate_player(current_player)
-  if current_player == "player"
-    "computer"
-  elsif current_player == "computer"
-    "player"
-  end
+  current_player == "player" ? "computer" : "player"
 end
+
 prompt "First to wins 5 will win the round"
 loop do
-  board = initialize_board
-  current_player = pick_turn
-
   loop do
+    board = initialize_board
+    current_player = pick_turn
+
+    loop do
+      display_board(board)
+      make_moves(board, current_player)
+      current_player = alternate_player(current_player)
+      break if someone_won?(board) || board_full?(board)
+    end
     display_board(board)
-    make_moves(board, current_player)
-    current_player = alternate_player(current_player)
-    break if someone_won?(board) || board_full?(board)
-  end
+    if someone_won?(board)
+      prompt "#{detect_winner(board)} won!\n\n"
+    else
+      prompt "It's a tie!\n\n"
+    end
 
-  display_board(board)
+    if detect_winner(board) == "Player"
+      wins += 1
+    elsif detect_winner(board) == "Computer"
+      losses += 1
+    else
+      draws += 1
+    end
 
-  if someone_won?(board)
-    prompt "#{detect_winner(board)} won!\n\n"
-  else
-    prompt "It's a tie!\n\n"
-  end
+    prompt "SCORE:\n\n"
 
-  if detect_winner(board) == "Player"
-    wins += 1
-  elsif detect_winner(board) == "Computer"
-    losses += 1
-  else
-    draws += 1
-  end
+    prompt "Player wins: #{wins} => Computer wins: #{losses} => Draws: #{draws}"
 
-  prompt "SCORE:\n\n"
-
-  prompt "Player wins: #{wins} => Computer wins: #{losses} => Draws: #{draws}\n"
-
-  if wins == 5
-    prompt "Player won this round!\n\n"
-    break
-  elsif losses == 5
-    prompt "Computer won this round!\n\n"
-    break
+    if wins == 5
+      prompt "Player won this round!\n\n"
+      wins = losses = draws = 0
+      break
+    elsif losses == 5
+      prompt "Computer won this round!\n\n"
+      wins = losses = draws = 0
+      break
+    end
+    prompt "Press enter to play again"
+    gets
   end
 
   prompt "Do you want to play again?(y or n)"
-  answer = gets.chomp.downcase
-  break unless answer.start_with?('y')
+  ans = gets.chomp.downcase
+  break unless ans.start_with?('y')
 end
 
 prompt "Thank you for playing tic-tac-toe. Goodbye"
